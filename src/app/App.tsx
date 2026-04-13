@@ -1,5 +1,7 @@
 import { Hero } from "./components/Hero";
 import { Welcome } from "./components/Welcome";
+import { GraphicMemes } from "./components/GraphicMemes";
+import { Quotes } from "./components/Quotes";
 import { About } from "./components/About";
 import { Ministries } from "./components/Ministries";
 import { Sermons } from "./components/Sermons";
@@ -17,6 +19,8 @@ export default function App() {
         <Navbar />
         <Hero />
         <Welcome />
+        <Quotes />
+        <GraphicMemes />
         <About />
         <Ministries />
         <Sermons />

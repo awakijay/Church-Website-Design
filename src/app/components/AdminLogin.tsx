@@ -1,9 +1,10 @@
 import { FormEvent, useState } from "react";
-import { LockKeyhole, ShieldCheck } from "lucide-react";
+import { Eye, EyeOff, LockKeyhole, ShieldCheck } from "lucide-react";
 import {
   authenticateAdmin,
   getAdminCredentialHint,
 } from "../lib/adminAuth";
+import logo from "../../assets/ihnbc-logo-2022.png";
 
 type AdminLoginProps = {
   onAuthenticated: () => void;
@@ -13,6 +14,7 @@ export function AdminLogin({ onAuthenticated }: AdminLoginProps) {
   const credentialHint = getAdminCredentialHint();
   const [username, setUsername] = useState(credentialHint.username);
   const [password, setPassword] = useState("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [error, setError] = useState("");
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -30,9 +32,16 @@ export function AdminLogin({ onAuthenticated }: AdminLoginProps) {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#FFF8E8] px-4 py-12">
-      <div className="w-full max-w-md rounded-[32px] border border-[#1C2526]/10 bg-white p-8 text-[#1C2526] shadow-[0_24px_80px_rgba(28,37,38,0.16)]">
+    <main className="flex min-h-screen items-center justify-center bg-[#FFF8E8] px-4 py-8 sm:py-12">
+      <div className="w-full max-w-md rounded-[28px] border border-[#1C2526]/10 bg-white p-6 text-[#1C2526] shadow-[0_24px_80px_rgba(28,37,38,0.16)] sm:p-8">
         <div className="mb-8 text-center">
+          <div className="mx-auto mb-5 flex h-24 w-24 items-center justify-center rounded-[28px] bg-[#FFF8E8] ring-1 ring-[#1C2526]/8">
+            <img
+              src={logo}
+              alt="In His Name Bible Church"
+              className="max-h-16 w-auto object-contain"
+            />
+          </div>
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#FF6B00]/10 text-[#FF6B00]">
             <ShieldCheck className="h-8 w-8" />
           </div>
@@ -58,15 +67,28 @@ export function AdminLogin({ onAuthenticated }: AdminLoginProps) {
 
           <label className="grid gap-2">
             <span className="text-sm text-[#1C2526]/70">Password</span>
-            <div className="flex items-center rounded-2xl border border-[#1C2526]/15 bg-[#FFF8E8] px-4 focus-within:border-[#FF6B00]">
+            <div className="flex items-center gap-2 rounded-2xl border border-[#1C2526]/15 bg-[#FFF8E8] px-4 focus-within:border-[#FF6B00]">
               <LockKeyhole className="h-4 w-4 text-[#1C2526]/45" />
               <input
-                type="password"
+                type={isPasswordVisible ? "text" : "password"}
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
-                className="w-full bg-transparent px-3 py-3 outline-none"
+                className="min-w-0 flex-1 bg-transparent px-3 py-3 outline-none"
                 autoComplete="current-password"
               />
+              <button
+                type="button"
+                onClick={() => setIsPasswordVisible((current) => !current)}
+                className="rounded-full p-1.5 text-[#1C2526]/45 transition-colors hover:text-[#FF6B00] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B00]/30"
+                aria-label={isPasswordVisible ? "Hide password" : "Show password"}
+                aria-pressed={isPasswordVisible}
+              >
+                {isPasswordVisible ? (
+                  <EyeOff className="h-4 w-4" />
+                ) : (
+                  <Eye className="h-4 w-4" />
+                )}
+              </button>
             </div>
           </label>
 
@@ -84,14 +106,7 @@ export function AdminLogin({ onAuthenticated }: AdminLoginProps) {
           </button>
         </form>
 
-        <div className="mt-6 rounded-2xl border border-[#1C2526]/10 bg-[#FFF8E8] px-4 py-4 text-sm text-[#1C2526]/70">
-          {/* <p>Username: {credentialHint.username}</p> */}
-          {/* <p className="mt-1">
-            {credentialHint.isUsingDefaultPassword
-              ? "The portal is using a development password right now. Set VITE_ADMIN_PASSWORD before production."
-              : "Password is being provided through environment configuration."}
-          </p> */}
-        </div>
+        
       </div>
     </main>
   );

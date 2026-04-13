@@ -34,7 +34,7 @@ export function Ministries() {
     <section
       id="ministries"
       ref={ref}
-      className="scroll-mt-28 bg-white px-4 py-20 md:py-32"
+      className="scroll-mt-28 bg-white px-4 py-16 sm:px-5 md:py-24 lg:px-6 lg:py-32"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -61,13 +61,13 @@ export function Ministries() {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group text-left bg-gradient-to-br from-[#FFF8E8] to-white p-8 border border-[#FF6B00]/20 hover:border-[#FF6B00] hover:shadow-xl transition-all hover:-translate-y-2"
+              className="group rounded-[32px] border border-[#FF6B00]/20 bg-gradient-to-br from-[#FFF8E8] to-white p-6 text-left shadow-[0_18px_45px_rgba(28,37,38,0.08)] transition-all hover:-translate-y-2 hover:border-[#FF6B00] hover:shadow-xl sm:p-8"
             >
               {(() => {
                 const Icon = ministryIcons[ministry.icon] ?? Users;
 
                 return (
-                  <div className="w-16 h-16 bg-[#FF6B00] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-[24px] bg-[#FF6B00] shadow-[0_16px_30px_rgba(255,107,0,0.18)] transition-transform group-hover:scale-110">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
                 );

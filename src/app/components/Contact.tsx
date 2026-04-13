@@ -10,7 +10,7 @@ import {
   Phone,
   Youtube,
 } from "lucide-react";
-import logo from "../../assets/ihnbc-logo-2022.png";
+import footerLogo from "../../assets/ihnbc-logo-2022-white-no-circles.png";
 import { openMailDraft } from "../lib/contactActions";
 import { DonationSection } from "./DonationSection";
 
@@ -149,7 +149,7 @@ export function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="scroll-mt-28 bg-white px-4 py-20 md:py-32"
+      className="scroll-mt-28 bg-white px-4 py-16 sm:px-5 md:py-24 lg:px-6 lg:py-32"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -172,7 +172,7 @@ export function Contact() {
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6"
+            className="space-y-6 rounded-[32px] border border-[#1C2526]/8 bg-[#FFFDF8] p-6 shadow-[0_24px_60px_rgba(28,37,38,0.08)] sm:p-8"
           >
             <h3 className="text-2xl text-[#1C2526] mb-6">Send us a message</h3>
             <form className="space-y-4" onSubmit={handleSubmit}>
@@ -197,7 +197,7 @@ export function Contact() {
                   value={name}
                   onChange={(event) => setName(event.target.value)}
                   required
-                  className="w-full px-4 py-3 border border-[#1C2526]/20 focus:border-[#FF6B00] focus:outline-none transition-colors"
+                  className="w-full rounded-2xl border border-[#1C2526]/12 bg-white px-4 py-3 shadow-[0_10px_25px_rgba(28,37,38,0.04)] transition-colors focus:border-[#FF6B00] focus:outline-none"
                   placeholder="Your name"
                 />
               </div>
@@ -211,7 +211,7 @@ export function Contact() {
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   required
-                  className="w-full px-4 py-3 border border-[#1C2526]/20 focus:border-[#FF6B00] focus:outline-none transition-colors"
+                  className="w-full rounded-2xl border border-[#1C2526]/12 bg-white px-4 py-3 shadow-[0_10px_25px_rgba(28,37,38,0.04)] transition-colors focus:border-[#FF6B00] focus:outline-none"
                   placeholder="your@email.com"
                 />
               </div>
@@ -225,13 +225,13 @@ export function Contact() {
                   value={message}
                   onChange={(event) => setMessage(event.target.value)}
                   required
-                  className="w-full px-4 py-3 border border-[#1C2526]/20 focus:border-[#FF6B00] focus:outline-none transition-colors resize-none"
+                  className="w-full resize-none rounded-[24px] border border-[#1C2526]/12 bg-white px-4 py-3 shadow-[0_10px_25px_rgba(28,37,38,0.04)] transition-colors focus:border-[#FF6B00] focus:outline-none"
                   placeholder="How can we help you?"
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-[#FF6B00] text-white px-8 py-3 hover:bg-[#FF6B00]/90 transition-colors"
+                className="w-full rounded-full bg-[#FF6B00] px-8 py-3 text-white shadow-[0_18px_35px_rgba(255,107,0,0.2)] transition-colors hover:bg-[#FF6B00]/90"
               >
                 Send Message
               </button>
@@ -242,17 +242,21 @@ export function Contact() {
 
             <div className="grid gap-4 border-t border-[#1C2526]/10 pt-6">
               <a
-                href="mailto:stewardjornsen@gmail.com"
-                className="flex items-center gap-3 text-[#1C2526]/80 transition-colors hover:text-[#FF6B00]"
+                href="mailto:inhisnamebiblechurch@gmail.com"
+                className="flex items-center gap-3 rounded-2xl border border-[#1C2526]/8 bg-white px-4 py-3 text-[#1C2526]/80 transition-colors hover:border-[#FF6B00]/30 hover:text-[#FF6B00]"
               >
-                <Mail className="h-5 w-5 text-[#FF6B00]" />
-                <span>stewardjornsen@gmail.com</span>
+                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#FFF4E8] text-[#FF6B00]">
+                  <Mail className="h-5 w-5" />
+                </span>
+                <span>inhisnamebiblechurch@gmail.com</span>
               </a>
               <a
                 href="tel:+2347077423125"
-                className="flex items-center gap-3 text-[#1C2526]/80 transition-colors hover:text-[#FF6B00]"
+                className="flex items-center gap-3 rounded-2xl border border-[#1C2526]/8 bg-white px-4 py-3 text-[#1C2526]/80 transition-colors hover:border-[#FF6B00]/30 hover:text-[#FF6B00]"
               >
-                <Phone className="h-5 w-5 text-[#FF6B00]" />
+                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#FFF4E8] text-[#FF6B00]">
+                  <Phone className="h-5 w-5" />
+                </span>
                 <span>+234 707 742 3125</span>
               </a>
             </div>
@@ -262,7 +266,7 @@ export function Contact() {
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-gradient-to-br from-[#FFF8E8] to-white p-8 md:p-12"
+            className="rounded-[36px] border border-[#1C2526]/8 bg-gradient-to-br from-[#FFF8E8] to-white p-6 shadow-[0_24px_60px_rgba(28,37,38,0.08)] sm:p-8 md:p-12"
           >
             <h3 className="text-2xl text-[#1C2526] mb-6">Connect With Us</h3>
             <p className="text-[#1C2526]/70 leading-relaxed mb-8">
@@ -280,7 +284,7 @@ export function Contact() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label={social.name}
-                    className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#FF6B00] text-white transition-colors hover:bg-[#FF6B00]/90"
+                    className="flex h-12 w-12 items-center justify-center rounded-[18px] bg-[#FF6B00] text-white shadow-[0_16px_30px_rgba(255,107,0,0.22)] transition-colors hover:bg-[#FF6B00]/90"
                   >
                     {Icon ? <Icon className="h-6 w-6" /> : null}
                   </a>
@@ -306,16 +310,16 @@ export function Contact() {
 
       <footer className="relative mt-24 overflow-hidden bg-[#171E1F] text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,107,0,0.22),_transparent_38%),radial-gradient(circle_at_bottom_right,_rgba(255,221,0,0.14),_transparent_34%)]" />
-        <div className="relative mx-auto max-w-7xl px-4 py-16">
-          <div className="rounded-[36px] border border-white/10 bg-white/6 p-8 shadow-[0_30px_90px_rgba(0,0,0,0.24)] backdrop-blur-xl md:p-10">
+        <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-5 md:py-16 lg:px-6">
+          <div className="rounded-[30px] border border-white/10 bg-white/6 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:p-8 md:rounded-[36px] md:p-10">
             <div className="grid gap-10 lg:grid-cols-[1.2fr_0.9fr_1fr_1.1fr]">
               <div>
                 <div className="flex items-center gap-4">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-[28px] bg-white/10 ring-1 ring-white/10">
+                  <div className="flex h-20 w-48 items-center justify-center rounded-[24px]">
                     <img
-                      src={logo}
+                      src={footerLogo}
                       alt="In His Name Bible Church"
-                      className="max-h-14 w-auto object-contain"
+                      className="max-h-14 w-full object-contain"
                     />
                   </div>
                   <div>
@@ -412,11 +416,11 @@ export function Contact() {
                     <span>+234 707 742 3125</span>
                   </a>
                   <a
-                    href="mailto:stewardjornsen@gmail.com"
+                    href="mailto:inhisnamebiblechurch@gmail.com"
                     className="flex items-center gap-3 transition-colors hover:text-[#FFB26B]"
                   >
                     <Mail className="h-5 w-5 text-[#FFB26B]" />
-                    <span>stewardjornsen@gmail.com</span>
+                    <span>inhisnamebiblechurch@gmail.com</span>
                   </a>
                   <div className="flex flex-wrap gap-3 pt-2">
                     {socialLinks.map((social) => {

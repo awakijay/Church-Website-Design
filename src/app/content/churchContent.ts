@@ -1,3 +1,9 @@
+import type { ActivityCategory } from "./activityGallery";
+import {
+  DEFAULT_THUMBNAIL_POSITION,
+  normalizeThumbnailPosition,
+} from "../lib/thumbnailPosition";
+
 export type MinistryIconName =
   | "users"
   | "baby"
@@ -22,6 +28,10 @@ export type SermonItem = {
   series: string;
   summary: string;
   details: string;
+  link: string;
+  facebookLink: string;
+  tiktokLink: string;
+  instagramLink: string;
 };
 
 export type EventItem = {
@@ -34,10 +44,49 @@ export type EventItem = {
   details: string;
 };
 
+export type QuoteCategory =
+  | "Faith"
+  | "Prayer"
+  | "Love"
+  | "Hope"
+  | "Teaching";
+
+export type QuoteItem = {
+  id: string;
+  text: string;
+  reference: string;
+  category: QuoteCategory;
+  details: string;
+};
+
+export type GraphicMemeItem = {
+  id: string;
+  title: string;
+  summary: string;
+  details: string;
+  imageSrc: string;
+  thumbnailPositionX: number;
+  thumbnailPositionY: number;
+};
+
+export type ChurchMomentItem = {
+  id: string;
+  title: string;
+  subtitle: string;
+  category: ActivityCategory;
+  capturedAt: string;
+  imageSrc: string;
+  thumbnailPositionX: number;
+  thumbnailPositionY: number;
+};
+
 export type ChurchContent = {
   ministries: MinistryItem[];
   sermons: SermonItem[];
   events: EventItem[];
+  quotes: QuoteItem[];
+  graphicMemes: GraphicMemeItem[];
+  churchMoments: ChurchMomentItem[];
 };
 
 export const DEFAULT_CHURCH_CONTENT: ChurchContent = {
@@ -107,6 +156,10 @@ export const DEFAULT_CHURCH_CONTENT: ChurchContent = {
       summary: "Learning to trust God fully when the path ahead is not yet clear.",
       details:
         "This message explores what it means to walk by faith in daily life. Pastor Michael Johnson teaches on trusting God's promises, obeying even when outcomes are uncertain, and remaining steadfast through seasons that test conviction and character.",
+      link: "",
+      facebookLink: "",
+      tiktokLink: "",
+      instagramLink: "",
     },
     {
       id: "power-of-prayer",
@@ -117,6 +170,10 @@ export const DEFAULT_CHURCH_CONTENT: ChurchContent = {
       summary: "A call to deeper intimacy with God through consistent, expectant prayer.",
       details:
         "Pastor Sarah Williams reminds the church that prayer is more than a routine; it is a living conversation with God. This sermon emphasizes dependence on the Holy Spirit, persistence in prayer, and the transforming power of seeking God together.",
+      link: "",
+      facebookLink: "",
+      tiktokLink: "",
+      instagramLink: "",
     },
     {
       id: "love-one-another",
@@ -127,6 +184,10 @@ export const DEFAULT_CHURCH_CONTENT: ChurchContent = {
       summary: "How Christlike love shapes the witness and unity of the church.",
       details:
         "In this sermon, the church is challenged to practice sacrificial love in tangible ways. Pastor Michael Johnson highlights forgiveness, humility, service, and unity as visible expressions of the Gospel in the life of every believer.",
+      link: "",
+      facebookLink: "",
+      tiktokLink: "",
+      instagramLink: "",
     },
   ],
   events: [
@@ -174,6 +235,77 @@ export const DEFAULT_CHURCH_CONTENT: ChurchContent = {
         "Women of all ages are invited to grow together through Scripture, prayer, and encouraging conversation. This weekly gathering creates space for deeper faith, mutual support, and practical application of God's Word.",
     },
   ],
+  quotes: [
+    {
+      id: "quote-walk-by-faith",
+      text:
+        "Faith grows strongest when we keep obeying God even before the whole path becomes clear.",
+      reference: "Recent Teaching Reflection",
+      category: "Faith",
+      details:
+        "This reflection encourages believers to stay responsive to God's leading even when the next step requires trust. It works well as a caption, church graphic copy, or a short meditation point after a faith-centered message.",
+    },
+    {
+      id: "quote-prayer-conversation",
+      text:
+        "Prayer is not a ritual to finish but a living conversation that keeps the heart close to God.",
+      reference: "Prayer Emphasis",
+      category: "Prayer",
+      details:
+        "Use this quote to invite the church into deeper personal devotion and corporate prayer. It reinforces the idea that prayer is relational, ongoing, and central to spiritual growth.",
+    },
+    {
+      id: "quote-love-visible",
+      text:
+        "A healthy church is built when love is visible in service, humility, and forgiveness.",
+      reference: "Church Life Reminder",
+      category: "Love",
+      details:
+        "This line is designed for moments when the church wants to highlight unity, hospitality, and Christlike relationships. It pairs naturally with service updates, volunteer appreciation, or community-life campaigns.",
+    },
+    {
+      id: "quote-hope-anchor",
+      text:
+        "Hope in Christ gives steady courage for today and bright confidence for tomorrow.",
+      reference: "Sunday Encouragement",
+      category: "Hope",
+      details:
+        "This is a warm, all-purpose encouragement quote for visitors and members alike. It is especially useful for sermon recaps, weekly social posts, and follow-up communication after worship gatherings.",
+    },
+  ],
+  graphicMemes: [
+    {
+      id: "graphic-walking-in-faith",
+      title: "Walking In Faith Graphic",
+      summary: "A shareable design spotlighting this week's message and spiritual encouragement.",
+      details:
+        "Use this graphic for sermon promotion, WhatsApp sharing, and social posts that call people to trust God wholeheartedly. When uploaded, visitors can open it in a lightbox and read the supporting context directly on the site.",
+      imageSrc: "",
+      thumbnailPositionX: DEFAULT_THUMBNAIL_POSITION,
+      thumbnailPositionY: DEFAULT_THUMBNAIL_POSITION,
+    },
+    {
+      id: "graphic-power-of-prayer",
+      title: "Prayer Focus Graphic",
+      summary: "A visual reminder that keeps the church centered on prayer and dependence on God.",
+      details:
+        "This graphic works well for prayer meetings, weekly encouragement, and devotional reminders. Add a clean image and supporting note so members instantly understand the heart behind the design.",
+      imageSrc: "",
+      thumbnailPositionX: DEFAULT_THUMBNAIL_POSITION,
+      thumbnailPositionY: DEFAULT_THUMBNAIL_POSITION,
+    },
+    {
+      id: "graphic-love-one-another",
+      title: "Church Love Campaign Graphic",
+      summary: "A church-life visual built for sharing messages of unity, compassion, and service.",
+      details:
+        "This item can support ministry announcements, volunteer appreciation, and community-building moments. The popup detail area is ideal for a short explanation, campaign note, or sharing prompt.",
+      imageSrc: "",
+      thumbnailPositionX: DEFAULT_THUMBNAIL_POSITION,
+      thumbnailPositionY: DEFAULT_THUMBNAIL_POSITION,
+    },
+  ],
+  churchMoments: [],
 };
 
 export function normalizeMinistry(item: Partial<MinistryItem>, fallback?: MinistryItem): MinistryItem {
@@ -204,6 +336,10 @@ export function normalizeSermon(item: Partial<SermonItem>, fallback?: SermonItem
       fallback?.details ??
       item.summary ??
       "Add full sermon notes or details for the website.",
+    link: item.link ?? fallback?.link ?? "",
+    facebookLink: item.facebookLink ?? fallback?.facebookLink ?? "",
+    tiktokLink: item.tiktokLink ?? fallback?.tiktokLink ?? "",
+    instagramLink: item.instagramLink ?? fallback?.instagramLink ?? "",
   };
 }
 
@@ -224,6 +360,71 @@ export function normalizeEvent(item: Partial<EventItem>, fallback?: EventItem): 
   };
 }
 
+export function normalizeQuote(item: Partial<QuoteItem>, fallback?: QuoteItem): QuoteItem {
+  return {
+    id: item.id ?? fallback?.id ?? "quote",
+    text: item.text ?? fallback?.text ?? "Add an inspirational quote for the website.",
+    reference: item.reference ?? fallback?.reference ?? "Quote Reference",
+    category: item.category ?? fallback?.category ?? "Faith",
+    details:
+      item.details ??
+      fallback?.details ??
+      "Add the fuller reflection, context, or sharing note visitors should see when they open this quote.",
+  };
+}
+
+export function normalizeGraphicMeme(
+  item: Partial<GraphicMemeItem>,
+  fallback?: GraphicMemeItem,
+): GraphicMemeItem {
+  return {
+    id: item.id ?? fallback?.id ?? "graphic-meme",
+    title: item.title ?? fallback?.title ?? "Graphic Title",
+    summary:
+      item.summary ??
+      fallback?.summary ??
+      "Add a short summary that introduces this design on the website.",
+    details:
+      item.details ??
+      fallback?.details ??
+      "Add supporting details visitors should see when they open this graphic.",
+    imageSrc: item.imageSrc ?? fallback?.imageSrc ?? "",
+    thumbnailPositionX: normalizeThumbnailPosition(
+      item.thumbnailPositionX,
+      fallback?.thumbnailPositionX ?? DEFAULT_THUMBNAIL_POSITION,
+    ),
+    thumbnailPositionY: normalizeThumbnailPosition(
+      item.thumbnailPositionY,
+      fallback?.thumbnailPositionY ?? DEFAULT_THUMBNAIL_POSITION,
+    ),
+  };
+}
+
+export function normalizeChurchMoment(
+  item: Partial<ChurchMomentItem>,
+  fallback?: ChurchMomentItem,
+): ChurchMomentItem {
+  return {
+    id: item.id ?? fallback?.id ?? "church-moment",
+    title: item.title ?? fallback?.title ?? "Church Moment",
+    subtitle:
+      item.subtitle ??
+      fallback?.subtitle ??
+      "Add a short caption describing this church moment.",
+    category: item.category ?? fallback?.category ?? "Fellowship",
+    capturedAt: item.capturedAt ?? fallback?.capturedAt ?? "",
+    imageSrc: item.imageSrc ?? fallback?.imageSrc ?? "",
+    thumbnailPositionX: normalizeThumbnailPosition(
+      item.thumbnailPositionX,
+      fallback?.thumbnailPositionX ?? DEFAULT_THUMBNAIL_POSITION,
+    ),
+    thumbnailPositionY: normalizeThumbnailPosition(
+      item.thumbnailPositionY,
+      fallback?.thumbnailPositionY ?? DEFAULT_THUMBNAIL_POSITION,
+    ),
+  };
+}
+
 export const MINISTRY_ICON_OPTIONS: Array<{
   label: string;
   value: MinistryIconName;
@@ -234,4 +435,12 @@ export const MINISTRY_ICON_OPTIONS: Array<{
   { label: "Music", value: "music" },
   { label: "Globe", value: "globe" },
   { label: "Book Heart", value: "book-heart" },
+];
+
+export const QUOTE_CATEGORY_OPTIONS: QuoteCategory[] = [
+  "Faith",
+  "Prayer",
+  "Love",
+  "Hope",
+  "Teaching",
 ];

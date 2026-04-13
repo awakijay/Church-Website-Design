@@ -31,7 +31,7 @@ export function DonationSection({ compact = false }: DonationSectionProps) {
   return (
     <div
       id="give"
-      className="scroll-mt-28 rounded-[32px] border border-[#FF6B00]/15 bg-white p-6 shadow-[0_18px_50px_rgba(28,37,38,0.08)]"
+      className="scroll-mt-28 rounded-[28px] border border-[#FF6B00]/15 bg-white p-4 shadow-[0_18px_50px_rgba(28,37,38,0.08)] sm:p-6 md:rounded-[32px]"
     >
       <div className="flex items-center justify-between gap-4 border-b border-[#1C2526]/8 pb-5">
         <div className="flex items-center gap-3">
@@ -70,7 +70,7 @@ export function DonationSection({ compact = false }: DonationSectionProps) {
               "Hello, I would like to support the church's projects and would appreciate more giving information.",
             )
           }
-          className="mt-6 inline-flex items-center justify-center rounded-xl border-2 border-[#1A5D8F] px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-[#1A5D8F] transition-colors hover:bg-[#1A5D8F] hover:text-white"
+          className="mt-6 inline-flex items-center justify-center rounded-full border-2 border-[#1A5D8F] px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-[#1A5D8F] transition-colors hover:bg-[#1A5D8F] hover:text-white"
         >
           Support Our Projects
         </button>
@@ -143,7 +143,7 @@ export function DonationSection({ compact = false }: DonationSectionProps) {
       <div className="mt-6">
         <a
           href="./#contact"
-          className="inline-flex items-center gap-2 text-sm font-medium text-[#1A5D8F] transition-colors hover:text-[#FF6B00]"
+          className="inline-flex items-center gap-2 rounded-full border border-[#1A5D8F]/12 bg-[#F5FAFF] px-4 py-2.5 text-sm font-medium text-[#1A5D8F] transition-colors hover:border-[#FF6B00]/20 hover:text-[#FF6B00]"
         >
           Contact the church about giving
           <ArrowRight className="h-4 w-4" />

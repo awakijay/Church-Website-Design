@@ -1,8 +1,20 @@
+import { useEffect, useState } from "react";
+
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
-import { Clock, ExternalLink, Mail, MapPin, Phone } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Clock,
+  ExternalLink,
+  Mail,
+  MapPin,
+  Phone,
+} from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { activityGallery } from "../content/activityGallery";
+
+const VISIT_CAROUSEL_INTERVAL_MS = 4500;
 
 const weeklyActivities = [
   {
@@ -46,15 +58,47 @@ const weeklyActivities = [
 
 export function Visit() {
   const { ref, inView } = useInView();
-  const visitPhoto = activityGallery[11] ?? activityGallery.at(-1);
+  const [activePhotoIndex, setActivePhotoIndex] = useState(0);
+  const visitPhotos = activityGallery;
+  const visitPhoto = visitPhotos[activePhotoIndex] ?? visitPhotos[0];
   const mapUrl =
     "https://www.google.com/maps/search/?api=1&query=In+His+Name+Bible+Church,+2+Church+Rd,+Sunlight+Estate+Gate,+Incarnate+Rd+(Off+Location+Rd),+Umuebulu+2,+Rivers,+NG";
+
+  useEffect(() => {
+    if (visitPhotos.length <= 1) {
+      return undefined;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setActivePhotoIndex((current) => (current + 1) % visitPhotos.length);
+    }, VISIT_CAROUSEL_INTERVAL_MS);
+
+    return () => window.clearInterval(intervalId);
+  }, [visitPhotos.length]);
+
+  function showPreviousPhoto() {
+    if (visitPhotos.length <= 1) {
+      return;
+    }
+
+    setActivePhotoIndex(
+      (current) => (current - 1 + visitPhotos.length) % visitPhotos.length,
+    );
+  }
+
+  function showNextPhoto() {
+    if (visitPhotos.length <= 1) {
+      return;
+    }
+
+    setActivePhotoIndex((current) => (current + 1) % visitPhotos.length);
+  }
 
   return (
     <section
       id="visit"
       ref={ref}
-      className="scroll-mt-28 bg-[#FFF8E8] px-4 py-20 md:py-32"
+      className="scroll-mt-28 bg-[#FFF8E8] px-4 py-16 sm:px-5 md:py-24 lg:px-6 lg:py-32"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -78,12 +122,81 @@ export function Visit() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <ImageWithFallback
-              src={visitPhoto?.src}
-              alt={visitPhoto?.alt ?? "Church members gathered together"}
-              className="h-[560px] w-full rounded-[36px] object-cover shadow-[0_24px_60px_rgba(28,37,38,0.18)]"
-              style={{ objectPosition: visitPhoto?.objectPosition }}
-            />
+            <div className="relative overflow-hidden rounded-[28px] border border-[#1C2526]/8 bg-white p-2.5 shadow-[0_24px_60px_rgba(28,37,38,0.18)] md:rounded-[36px] md:p-3">
+              <div className="relative h-[360px] overflow-hidden rounded-[22px] sm:h-[460px] md:h-[560px] md:rounded-[30px]">
+                {visitPhotos.map((photo, index) => (
+                  <ImageWithFallback
+                    key={photo.id}
+                    src={photo.src}
+                    alt={photo.alt}
+                    className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ${
+                      index === activePhotoIndex ? "opacity-100" : "opacity-0"
+                    }`}
+                    style={{ objectPosition: photo.objectPosition }}
+                  />
+                ))}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#09090A]/60 via-transparent to-transparent" />
+
+                {visitPhotos.length > 1 ? (
+                  <div className="absolute right-3 top-3 flex items-center gap-2 sm:right-5 sm:top-5">
+                    <button
+                      type="button"
+                      onClick={showPreviousPhoto}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/18 bg-white/10 text-white backdrop-blur transition-colors hover:bg-white/18 sm:h-11 sm:w-11"
+                      aria-label="Show previous visit photo"
+                    >
+                      <ChevronLeft className="h-5 w-5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={showNextPhoto}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/18 bg-white/10 text-white backdrop-blur transition-colors hover:bg-white/18 sm:h-11 sm:w-11"
+                      aria-label="Show next visit photo"
+                    >
+                      <ChevronRight className="h-5 w-5" />
+                    </button>
+                  </div>
+                ) : null}
+
+                <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-3 p-4 sm:flex-row sm:items-end sm:justify-between sm:p-5">
+                  <div className="min-w-0 max-w-lg">
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#FFD7BA]">
+                      Visit Gallery
+                    </p>
+                    <p className="mt-2 text-lg text-white sm:text-xl">
+                      {visitPhoto?.title ?? "Church Family"}
+                    </p>
+                    <p className="mt-2 text-sm text-white/84">
+                      {visitPhoto?.subtitle ??
+                        "Preview the warmth, worship, and fellowship waiting for you."}
+                    </p>
+                  </div>
+
+                  {visitPhotos.length > 1 ? (
+                    <div className="w-full sm:w-auto">
+                      <div className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-white/65 sm:text-right">
+                        {activePhotoIndex + 1}/{visitPhotos.length}
+                      </div>
+                      <div className="hide-scrollbar flex max-w-full items-center gap-2 overflow-x-auto pb-1 sm:justify-end">
+                        {visitPhotos.map((photo, index) => (
+                          <button
+                            key={`${photo.id}-dot`}
+                            type="button"
+                            onClick={() => setActivePhotoIndex(index)}
+                            className={`h-2 shrink-0 rounded-full transition-all ${
+                              index === activePhotoIndex
+                                ? "w-8 bg-[#FF6B00]"
+                                : "w-2 bg-white/55"
+                            }`}
+                            aria-label={`Show visit photo ${index + 1}`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div
@@ -151,11 +264,11 @@ export function Visit() {
                   <span>+234 707 742 3125</span>
                 </a>
                 <a
-                  href="mailto:stewardjornsen@gmail.com"
+                  href="mailto:inhisnamebiblechurch@gmail.com"
                   className="flex items-start gap-4 text-[#1C2526]/80 transition-colors hover:text-[#FF6B00]"
                 >
                   <Mail className="mt-1 h-6 w-6 shrink-0 text-[#FF6B00]" />
-                  <span>stewardjornsen@gmail.com</span>
+                  <span>inhisnamebiblechurch@gmail.com</span>
                 </a>
               </div>
             </div>
@@ -165,7 +278,7 @@ export function Visit() {
                 href={mapUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-block bg-[#FF6B00] text-white px-8 py-3 hover:bg-[#FF6B00]/90 transition-colors"
+                className="inline-flex w-full items-center justify-center rounded-full bg-[#FF6B00] px-8 py-3 text-white shadow-[0_18px_35px_rgba(255,107,0,0.18)] transition-colors hover:bg-[#FF6B00]/90 sm:w-auto"
               >
                 Get Directions
               </a>

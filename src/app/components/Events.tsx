@@ -18,7 +18,7 @@ export function Events() {
     <section
       id="events"
       ref={ref}
-      className="scroll-mt-28 bg-white px-4 py-20 md:py-32"
+      className="scroll-mt-28 bg-white px-4 py-16 sm:px-5 md:py-24 lg:px-6 lg:py-32"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -43,7 +43,7 @@ export function Events() {
               initial={{ opacity: 0, x: -30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-gradient-to-r from-[#FFF8E8] to-white p-8 border-l-4 border-[#FF6B00] hover:shadow-xl transition-shadow"
+              className="rounded-[30px] border border-[#1C2526]/8 border-l-4 border-l-[#FF6B00] bg-gradient-to-r from-[#FFF8E8] to-white p-5 shadow-[0_16px_40px_rgba(28,37,38,0.06)] transition-shadow hover:shadow-xl sm:p-8"
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
                 <button
@@ -81,7 +81,7 @@ export function Events() {
                       `Hello, I would like to register for "${event.title}" on ${event.date}. Please share the next steps.`,
                     )
                   }
-                  className="self-start whitespace-nowrap bg-[#FF6B00] px-6 py-3 text-white transition-colors hover:bg-[#FF6B00]/90"
+                  className="self-start whitespace-nowrap rounded-full bg-[#FF6B00] px-6 py-3 text-white shadow-[0_16px_30px_rgba(255,107,0,0.18)] transition-colors hover:bg-[#FF6B00]/90"
                 >
                   Register
                 </button>

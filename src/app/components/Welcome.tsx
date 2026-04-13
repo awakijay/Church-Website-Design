@@ -5,7 +5,7 @@ export function Welcome() {
   const { ref, inView } = useInView();
 
   return (
-    <section ref={ref} className="bg-white px-4 py-20 md:py-32">
+    <section ref={ref} className="bg-white px-4 py-16 sm:px-5 md:py-24 lg:px-6 lg:py-32">
       <div className="mx-auto max-w-4xl text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -23,13 +23,12 @@ export function Welcome() {
             looking for a church family, you belong here.
           </p>
 
-          <div className="mt-12 border-l-4 border-[#FF6B00] bg-gradient-to-br from-[#FFF8E8] to-[#FFDD00]/10 p-8 md:p-12">
+          <div className="mt-12 rounded-[32px] border border-[#FF6B00]/18 border-l-[6px] border-l-[#FF6B00] bg-gradient-to-br from-[#FFF8E8] to-[#FFDD00]/10 p-6 shadow-[0_18px_45px_rgba(28,37,38,0.06)] sm:p-8 md:p-12">
             <p className="text-xl italic leading-relaxed text-[#1C2526] md:text-2xl">
-              "For God so loved the world that he gave his one and only Son,
-              that whoever believes in him shall not perish but have eternal
-              life."
+              "By faith in the name of Jesus, this man whom you see and know 
+              was made strong. It is Jesus’ name and the faith that comes through him that has completely healed him, as you can all see."
             </p>
-            <p className="mt-4 text-[#FF6B00]">- John 3:16</p>
+            <p className="mt-4 text-[#FF6B00]">- Acts 3:16</p>
           </div>
         </motion.div>
       </div>

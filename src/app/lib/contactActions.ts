@@ -1,5 +1,5 @@
 const CONTACT_SECTION_ID = "contact";
-const CONTACT_EMAIL = "stewardjornsen@gmail.com";
+const CONTACT_EMAIL = "inhisnamebiblechurch@gmail.com";
 
 export function scrollToSection(sectionId: string) {
   const target = document.getElementById(sectionId);
