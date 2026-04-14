@@ -1,24 +1,96 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, ShieldCheck, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import logo from "../../assets/ihnbc-logo-2022.png";
 
+const NAV_LINKS = [
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Quotes", href: "#quotes" },
+  { name: "Graphics", href: "#graphic-memes" },
+  { name: "Ministries", href: "#ministries" },
+  { name: "Sermons", href: "#sermons" },
+  { name: "Events", href: "#events" },
+  { name: "Visit", href: "#visit" },
+  { name: "Contact", href: "#contact" },
+];
+
+const NAV_ACTIVE_OFFSET_PX = 180;
+
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState(NAV_LINKS[0].href);
   const adminHref = "admin.html";
   const giveHref = "donations.html";
 
-  const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Quotes", href: "#quotes" },
-    { name: "Graphics", href: "#graphic-memes" },
-    { name: "Ministries", href: "#ministries" },
-    { name: "Sermons", href: "#sermons" },
-    { name: "Events", href: "#events" },
-    { name: "Visit", href: "#visit" },
-    { name: "Contact", href: "#contact" },
-  ];
+  useEffect(() => {
+    function updateActiveHref() {
+      const sectionEntries = NAV_LINKS.map((link) => {
+        const element = document.getElementById(link.href.slice(1));
+
+        return element
+          ? {
+              href: link.href,
+              top: element.offsetTop,
+            }
+          : null;
+      })
+        .filter((entry): entry is { href: string; top: number } => Boolean(entry))
+        .sort((left, right) => left.top - right.top);
+
+      if (!sectionEntries.length) {
+        return;
+      }
+
+      const scrollPosition = window.scrollY + NAV_ACTIVE_OFFSET_PX;
+      let nextActiveHref = sectionEntries[0].href;
+
+      for (const entry of sectionEntries) {
+        if (scrollPosition >= entry.top) {
+          nextActiveHref = entry.href;
+        }
+      }
+
+      const isAtPageBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+
+      if (isAtPageBottom) {
+        nextActiveHref = sectionEntries[sectionEntries.length - 1].href;
+      }
+
+      setActiveHref((current) =>
+        current === nextActiveHref ? current : nextActiveHref,
+      );
+    }
+
+    updateActiveHref();
+
+    window.addEventListener("scroll", updateActiveHref, { passive: true });
+    window.addEventListener("resize", updateActiveHref);
+    window.addEventListener("hashchange", updateActiveHref);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveHref);
+      window.removeEventListener("resize", updateActiveHref);
+      window.removeEventListener("hashchange", updateActiveHref);
+    };
+  }, []);
+
+  function getDesktopLinkClass(isActive: boolean) {
+    return `rounded-full px-4 py-2 text-sm transition-all ${
+      isActive
+        ? "bg-white text-[#FF6B00] shadow-[0_10px_22px_rgba(28,37,38,0.08)]"
+        : "text-[#1C2526] hover:bg-white hover:text-[#FF6B00]"
+    }`;
+  }
+
+  function getMobileLinkClass(isActive: boolean) {
+    return `block rounded-2xl px-4 py-3 transition-colors ${
+      isActive
+        ? "bg-[#FFF8E8] font-medium text-[#FF6B00]"
+        : "text-[#1C2526] hover:bg-[#FFF8E8] hover:text-[#FF6B00]"
+    }`;
+  }
 
   return (
     <nav className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 sm:px-4 lg:px-5">
@@ -46,11 +118,13 @@ export function Navbar() {
           </a>
 
           <div className="hidden md:flex items-center gap-2 rounded-full border border-[#1C2526]/8 bg-[#FFF8E8]/80 px-3 py-2">
-            {navLinks.map((link) => (
+            {NAV_LINKS.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="rounded-full px-4 py-2 text-sm text-[#1C2526] transition-colors hover:bg-white hover:text-[#FF6B00]"
+                onClick={() => setActiveHref(link.href)}
+                aria-current={activeHref === link.href ? "location" : undefined}
+                className={getDesktopLinkClass(activeHref === link.href)}
               >
                 {link.name}
               </a>
@@ -98,12 +172,16 @@ export function Navbar() {
             className="mx-auto mt-3 max-w-7xl overflow-hidden rounded-[28px] border border-white/60 bg-white/96 shadow-[0_20px_60px_rgba(28,37,38,0.12)] backdrop-blur-xl md:hidden"
           >
             <div className="space-y-2 px-3 py-4 sm:px-4 sm:py-5">
-              {navLinks.map((link) => (
+              {NAV_LINKS.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block rounded-2xl px-4 py-3 text-[#1C2526] transition-colors hover:bg-[#FFF8E8] hover:text-[#FF6B00]"
+                  onClick={() => {
+                    setActiveHref(link.href);
+                    setMobileMenuOpen(false);
+                  }}
+                  aria-current={activeHref === link.href ? "location" : undefined}
+                  className={getMobileLinkClass(activeHref === link.href)}
                 >
                   {link.name}
                 </a>

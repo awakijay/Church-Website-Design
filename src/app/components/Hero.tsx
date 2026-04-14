@@ -3,7 +3,6 @@ import { motion } from "motion/react";
 import {
   ArrowRight,
   CalendarHeart,
-  Image as ImageIcon,
   PlayCircle,
 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
@@ -83,7 +82,7 @@ export function Hero() {
 
       <div className="absolute inset-0 bg-gradient-to-b from-[#120b16]/80 via-[#161019]/60 to-[#120f18]" />
 
-      <div className="relative px-4 pb-16 pt-32 sm:pt-36">
+      <div className="relative px-4 pb-16 pt-44 sm:pt-48">
         <div className="mx-auto grid min-h-[calc(100vh-8rem)] max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -93,17 +92,20 @@ export function Hero() {
           >
             <div className="mb-6 mt-20 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#FFD7BA]">
               <CalendarHeart className="h-4 w-4" />
-              Welcome To
+              Welcome To IHNBC
             </div>
-            <div className="mb-6  ">
+            <div className="mb-6">
               <img
                 src={heroLogo}
                 alt="In His Name Bible Church"
                 className="max-h-24 w-auto max-w-full object-contain sm:max-h-28 lg:max-h-32"
               />
+              <p className="mt-4 text-sm font-semibold uppercase tracking-[0.28em] text-[#FFD7BA]">
+                A Synergy of Revelation and Education
+              </p>
             </div>
             <h1 className="max-w-3xl text-4xl leading-tight text-white sm:text-5xl lg:text-7xl">
-              A church family alive with worship, truth, and community.
+              Reaching Out To The World In His Name.
             </h1>
 
             <motion.p
@@ -112,9 +114,10 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="mt-6 max-w-2xl text-lg leading-8 text-white/82 md:text-xl"
             >
-              Proclaiming Jesus, teaching the Word, and transforming lives
-              through vibrant worship, heartfelt fellowship, and purposeful
-              discipleship.
+              In His Name Bible Church is a multicultural, people-friendly
+              church where revelation and education meet, and where
+              spirituality, intelligence, and technology work together to exalt
+              Jesus Christ.
             </motion.p>
 
             <motion.div
@@ -141,9 +144,18 @@ export function Hero() {
 
             <div className="mt-10 grid max-w-xl gap-4 sm:grid-cols-3">
               {[
-                ["Living Worship", "Spirit-filled gatherings"],
-                ["Warm Fellowship", "A welcoming church family"],
-                ["Strong Teaching", "Biblical truth for daily life"],
+                [
+                  "Multicultural",
+                  "A people-friendly home for every background",
+                ],
+                [
+                  "Revelation + Education",
+                  "Biblical truth shaping heart, mind, and daily life",
+                ],
+                [
+                  "Spirit + Intelligence",
+                  "A fusion of spirituality, intelligence, and technology",
+                ],
               ].map(([title, text], index) => (
                 <motion.div
                   key={title}
@@ -177,10 +189,6 @@ export function Hero() {
                     style={{ objectPosition: activePhoto?.objectPosition }}
                   />
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#09090A]/92 via-[#09090A]/55 to-transparent p-6">
-                    {/* <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/10 px-3 py-1 text-xs uppercase tracking-[0.24em] text-[#FFD7BA]">
-                      <ImageIcon className="h-3.5 w-3.5" />
-                     
-                    </div> */}
                     <p className="mt-4 text-2xl text-white">
                       {activePhoto?.title ?? "Church Moments"}
                     </p>

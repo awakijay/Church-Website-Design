@@ -149,14 +149,14 @@ export function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="scroll-mt-28 bg-white px-4 py-16 sm:px-5 md:py-24 lg:px-6 lg:py-32"
+      className="scroll-mt-28 bg-white px-4 py-14 sm:px-5 md:py-20 lg:px-6 lg:py-24"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <h2 className="text-4xl md:text-5xl text-[#1C2526] mb-4">
             Get In Touch
@@ -167,14 +167,14 @@ export function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid items-start gap-8 md:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6 rounded-[32px] border border-[#1C2526]/8 bg-[#FFFDF8] p-6 shadow-[0_24px_60px_rgba(28,37,38,0.08)] sm:p-8"
+            className="self-start space-y-5 rounded-[32px] border border-[#1C2526]/8 bg-[#FFFDF8] p-5 shadow-[0_24px_60px_rgba(28,37,38,0.08)] sm:p-6"
           >
-            <h3 className="text-2xl text-[#1C2526] mb-6">Send us a message</h3>
+            <h3 className="text-2xl text-[#1C2526] mb-4">Send us a message</h3>
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="hidden" aria-hidden="true">
                 <label htmlFor="website">Website</label>
@@ -266,14 +266,14 @@ export function Contact() {
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="rounded-[36px] border border-[#1C2526]/8 bg-gradient-to-br from-[#FFF8E8] to-white p-6 shadow-[0_24px_60px_rgba(28,37,38,0.08)] sm:p-8 md:p-12"
+            className="rounded-[36px] border border-[#1C2526]/8 bg-gradient-to-br from-[#FFF8E8] to-white p-5 shadow-[0_24px_60px_rgba(28,37,38,0.08)] sm:p-6 md:p-8"
           >
-            <h3 className="text-2xl text-[#1C2526] mb-6">Connect With Us</h3>
-            <p className="text-[#1C2526]/70 leading-relaxed mb-8">
+            <h3 className="text-2xl text-[#1C2526] mb-4">Connect With Us</h3>
+            <p className="text-[#1C2526]/70 leading-relaxed mb-6">
               Stay connected with our church community through social media and receive updates about upcoming events, sermons, and ministry opportunities.
             </p>
 
-            <div className="mb-8 flex flex-wrap gap-4">
+            <div className="mb-6 flex flex-wrap gap-3">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
 
@@ -295,8 +295,8 @@ export function Contact() {
             <div className="border-t border-[#1C2526]/10 pt-8">
               <DonationSection compact />
 
-              <div className="mt-10 border-t border-[#1C2526]/10 pt-8">
-                <h4 className="mb-4 text-xl text-[#1C2526]">Weekly Activities</h4>
+              <div className="mt-8 border-t border-[#1C2526]/10 pt-6">
+                <h4 className="mb-3 text-xl text-[#1C2526]">Weekly Activities</h4>
                 <div className="space-y-2 text-[#1C2526]/70">
                 {weeklyActivities.map((activity) => (
                   <div key={activity}>{activity}</div>
@@ -308,7 +308,7 @@ export function Contact() {
         </div>
       </div>
 
-      <footer className="relative mt-24 overflow-hidden bg-[#171E1F] text-white">
+      <footer className="relative mt-14 overflow-hidden bg-[#171E1F] text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,107,0,0.22),_transparent_38%),radial-gradient(circle_at_bottom_right,_rgba(255,221,0,0.14),_transparent_34%)]" />
         <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-5 md:py-16 lg:px-6">
           <div className="rounded-[30px] border border-white/10 bg-white/6 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:p-8 md:rounded-[36px] md:p-10">
@@ -330,8 +330,9 @@ export function Contact() {
                   </div>
                 </div>
                 <p className="mt-6 max-w-sm text-sm leading-7 text-white/72">
-                  A Christ-centered family proclaiming Jesus, teaching the Word,
-                  and raising transformed lives through worship, fellowship, and service.
+                  A multicultural, people-friendly Bible church proclaiming
+                  Jesus Christ through revelation, education, worship,
+                  discipleship, and faith in His name.
                 </p>
                 <a
                   href="#contact"
@@ -446,7 +447,7 @@ export function Contact() {
 
             <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-white/52 md:flex-row md:items-center md:justify-between">
               <p>&copy; 2026 In His Name Bible Church. All rights reserved.</p>
-              <p>Proclaiming Jesus, Teaching the Word, Transforming Lives.</p>
+              <p>Reaching Out to the World In His Name.</p>
             </div>
           </div>
         </div>

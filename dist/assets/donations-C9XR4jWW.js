@@ -1,1 +1,0 @@
-import{j as t,a as e}from"./index-BV1D_Tis.js";import{D as n}from"./DonationSection-Dlj1cQeM.js";function o(){return t.jsx("main",{className:"min-h-screen bg-[#FFF8E8] px-4 py-8 md:py-12",children:t.jsx("div",{className:"mx-auto max-w-5xl pt-20",children:t.jsx(n,{})})})}e.createRoot(document.getElementById("root")).render(t.jsx(o,{}));

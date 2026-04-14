@@ -237,40 +237,46 @@ export const DEFAULT_CHURCH_CONTENT: ChurchContent = {
   ],
   quotes: [
     {
-      id: "quote-walk-by-faith",
-      text:
-        "Faith grows strongest when we keep obeying God even before the whole path becomes clear.",
-      reference: "Recent Teaching Reflection",
+      id: "quote-ihnbc-motto",
+      text: "Reaching Out to the World In His Name.",
+      reference: "IHNBC Motto",
       category: "Faith",
       details:
-        "This reflection encourages believers to stay responsive to God's leading even when the next step requires trust. It works well as a caption, church graphic copy, or a short meditation point after a faith-centered message.",
+        "This motto captures the evangelistic heartbeat of In His Name Bible Church. It keeps the focus on Jesus Christ, bold outreach, and the calling to make His name known in every community.",
     },
     {
-      id: "quote-prayer-conversation",
-      text:
-        "Prayer is not a ritual to finish but a living conversation that keeps the heart close to God.",
-      reference: "Prayer Emphasis",
-      category: "Prayer",
+      id: "quote-ihnbc-tagline",
+      text: "IHNBC - A Synergy of Revelation and Education.",
+      reference: "IHNBC Tagline",
+      category: "Teaching",
       details:
-        "Use this quote to invite the church into deeper personal devotion and corporate prayer. It reinforces the idea that prayer is relational, ongoing, and central to spiritual growth.",
+        "This tagline reflects the church's commitment to spiritual depth and disciplined growth. It expresses a ministry culture where revelation from God's Word and intentional learning move together.",
     },
     {
-      id: "quote-love-visible",
+      id: "quote-name-of-jesus",
+      text: "The name of Jesus remains our supreme authority and power.",
+      reference: "Phil. 2:9-11; Acts 4:12",
+      category: "Faith",
+      details:
+        "This statement reflects the first letter in the NAME core values. It centers the church on the saving, healing, and victorious power found only in Jesus Christ.",
+    },
+    {
+      id: "quote-godly-families",
       text:
-        "A healthy church is built when love is visible in service, humility, and forgiveness.",
-      reference: "Church Life Reminder",
+        "We are raising strong, successful, godly families through faith in His name.",
+      reference: "IHNBC Mission Statement",
       category: "Love",
       details:
-        "This line is designed for moments when the church wants to highlight unity, hospitality, and Christlike relationships. It pairs naturally with service updates, volunteer appreciation, or community-life campaigns.",
+        "This line reflects the church's commitment to discipling families and the younger generation. It speaks to a ministry that values spiritual strength, healthy homes, and Christ-centered legacy.",
     },
     {
-      id: "quote-hope-anchor",
+      id: "quote-theme-verse",
       text:
-        "Hope in Christ gives steady courage for today and bright confidence for tomorrow.",
-      reference: "Sunday Encouragement",
+        "Faith in His name still brings strength, wholeness, and perfect soundness.",
+      reference: "Acts 3:16 (AKJV)",
       category: "Hope",
       details:
-        "This is a warm, all-purpose encouragement quote for visitors and members alike. It is especially useful for sermon recaps, weekly social posts, and follow-up communication after worship gatherings.",
+        "Drawn from the church's theme verse, this reminder points people to the healing and restoring power of Jesus' name. It is a concise expression of the faith and expectation that shape the church's witness.",
     },
   ],
   graphicMemes: [
